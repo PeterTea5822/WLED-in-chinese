@@ -13,41 +13,41 @@ function GetV(){var d=document;}
 <body onload="S()">
 <form id="form_s" name="Sf" method="post">
 <div class="helpB"><button type="button" onclick="H()">?</button></div>
-<button type="button" onclick="B()">Back</button><button type="submit">Save</button><hr>
-<h2>Sync setup</h2>
-<h3>WLED Broadcast</h3>
+<button type="button" onclick="B()">返回</button><button type="submit">保存</button><hr>
+<h2>同步设置</h2>
+<h3>WLED广播</h3>
 UDP Port: <input name="UP" type="number" min="1" max="65535" class="d5" required><br>
 2nd Port: <input name="U2" type="number" min="1" max="65535" class="d5" required><br>
-Receive: <input type="checkbox" name="RB">Brightness, <input type="checkbox" name="RC">Color, and <input type="checkbox" name="RX">Effects<br>
-Send notifications on direct change: <input type="checkbox" name="SD"><br>
-Send notifications on button press or IR: <input type="checkbox" name="SB"><br>
-Send Alexa notifications: <input type="checkbox" name="SA"><br>
-Send Philips Hue change notifications: <input type="checkbox" name="SH"><br>
-Send Macro notifications: <input type="checkbox" name="SM"><br>
-Send notifications twice: <input type="checkbox" name="S2"><br>
-<i>Reboot required to apply changes. </i>
-<h3>Instance List</h3>
-Enable instance list: <input type="checkbox" name="NL"><br>
-Make this instance discoverable: <input type="checkbox" name="NB">
-<h3>Realtime</h3>
-Receive UDP realtime: <input type="checkbox" name="RD"><br><br>
-<i>Network DMX input</i><br>
-Type:
+接收: <input type="checkbox" name="RB">亮度, <input type="checkbox" name="RC">颜色 ,<input type="checkbox" name="RX">效果<br>
+发送有关直接更改的通知: <input type="checkbox" name="SD"><br>
+按下按钮或红外线时发送通知: <input type="checkbox" name="SB"><br>
+发送 Alexa 通知: <input type="checkbox" name="SA"><br>
+发送飞利浦 Hue 更改通知: <input type="checkbox" name="SH"><br>
+发送宏通知: <input type="checkbox" name="SM"><br>
+发送两次通知: <input type="checkbox" name="S2"><br>
+<i>应用更改需要重新启动。 </i>
+<h3>实例列表</h3>
+启用实例列表: <input type="checkbox" name="NL"><br>
+使此实例可发现: <input type="checkbox" name="NB">
+<h3>实时</h3>
+实时接收UDP: <input type="checkbox" name="RD"><br><br>
+<i>网络DMX输入</i><br>
+类型:
 <select name=DI onchange="SP(); adj();">
 <option value=5568>E1.31 (sACN)</option>
 <option value=6454>Art-Net</option>
 <option value=4048>DDP</option>
-<option value=0 selected>Custom port</option>
+<option value=0 selected>自定义端口</option>
 </select><br>
 <div id=xp>Port: <input name="EP" type="number" min="1" max="65535" value="5568" class="d5" required><br></div>
-Multicast: <input type="checkbox" name="EM"><br>
+组播: <input type="checkbox" name="EM"><br>
 Start universe: <input name="EU" type="number" min="0" max="63999" required><br>
-<i>Reboot required.</i> Check out <a href="https://github.com/LedFx/LedFx" target="_blank">LedFx</a>!<br>
-Skip out-of-sequence packets: <input type="checkbox" name="ES"><br>
-DMX start address: <input name="DA" type="number" min="0" max="510" required><br>
-DMX mode:
+<i>需要重启.</i> Check out <a href="https://github.com/LedFx/LedFx" target="_blank">LedFx</a>!<br>
+跳过乱序数据包: <input type="checkbox" name="ES"><br>
+DMX 起始地址: <input name="DA" type="number" min="0" max="510" required><br>
+DMX 模式:
 <select name=DM>
-<option value=0>Disabled</option>
+<option value=0>禁用</option>
 <option value=1>Single RGB</option>
 <option value=2>Single DRGB</option>
 <option value=3>Effect</option>
@@ -56,51 +56,51 @@ DMX mode:
 <option value=6>Multi RGBW</option>
 </select><br>
 <a href="https://github.com/Aircoookie/WLED/wiki/E1.31-DMX" target="_blank">E1.31 info</a><br>
-Timeout: <input name="ET" type="number" min="1" max="65000" required> ms<br>
-Force max brightness: <input type="checkbox" name="FB"><br>
-Disable realtime gamma correction: <input type="checkbox" name="RG"><br>
-Realtime LED offset: <input name="WO" type="number" min="-255" max="255" required><br><br>
-Realtime HSV color correction: <input type="checkbox" name="HX"><br>
-Saturation (1-30): <input name="HS" type="number" min="1" max="30" value="1" step="1"><br>
-Value (1-60): <input name="HV" type="number" min="1" max="60" value="10" step="1">
-<h3>Alexa Voice Assistant</h3>
-Emulate Alexa device: <input type="checkbox" name="AL"><br>
-Alexa invocation name: <input name="AI" maxlength="32">
+超时: <input name="ET" type="number" min="1" max="65000" required> ms<br>
+强制最大亮度: <input type="checkbox" name="FB"><br>
+禁用实时伽马校正: <input type="checkbox" name="RG"><br>
+实时 LED 偏移: <input name="WO" type="number" min="-255" max="255" required><br><br>
+实时 HSV 色彩校正: <input type="checkbox" name="HX"><br>
+饱和度 (1-30): <input name="HS" type="number" min="1" max="30" value="1" step="1"><br>
+价值 (1-60): <input name="HV" type="number" min="1" max="60" value="10" step="1">
+<h3>Alexa 语音助手</h3>
+模拟 Alexa 设备: <input type="checkbox" name="AL"><br>
+Alexa 调用名称: <input name="AI" maxlength="32">
 <h3>Blynk</h3>
-<b>Blynk, MQTT and Hue sync all connect to external hosts!<br>
-This may impact the responsiveness of the ESP8266.</b><br>
-For best results, only use one of these services at a time.<br>
-(alternatively, connect a second ESP to them and use the UDP sync)<br><br>
-Host: <input name="BH" maxlength="32">
-Port: <input name="BP" type="number" min="1" max="65535" value="80" class="d5"><br>
-Device Auth token: <input name="BK" maxlength="33"><br>
-<i>Clear the token field to disable. </i><a href="https://github.com/Aircoookie/WLED/wiki/Blynk" target="_blank">Setup info</a>
+<b>Blynk, MQTT 和 Hue 同步全部连接到外部主机!<br>
+这可能会影响 ESP8266 的响应能力。</b><br>
+为获得最佳效果，请一次仅使用其中一项服务。<br>
+(或者，将第二个 ESP 连接到它们并使用 UDP 同步)<br><br>
+主机: <input name="BH" maxlength="32">
+端口: <input name="BP" type="number" min="1" max="65535" value="80" class="d5"><br>
+设备身份验证令牌: <input name="BK" maxlength="33"><br>
+<i>清除令牌字段以禁用 </i><a href="https://github.com/Aircoookie/WLED/wiki/Blynk" target="_blank">Setup info</a>
 <h3>MQTT</h3>
-Enable MQTT: <input type="checkbox" name="MQ"><br>
+启用 MQTT: <input type="checkbox" name="MQ"><br>
 Broker: <input name="MS" maxlength="32">
-Port: <input name="MQPORT" type="number" min="1" max="65535" class="d5"><br>
-<b>The MQTT credentials are sent over an unsecured connection.<br>
-Never use the MQTT password for another service!</b><br>
-Username: <input name="MQUSER" maxlength="40"><br>
-Password: <input type="password" name="MQPASS" maxlength="64"><br>
+端口: <input name="MQPORT" type="number" min="1" max="65535" class="d5"><br>
+<b>MQTT 凭证通过不安全的连接发送<br>
+切勿将 MQTT 密码用于其他服务!</b><br>
+用户名: <input name="MQUSER" maxlength="40"><br>
+密码: <input type="password" name="MQPASS" maxlength="64"><br>
 Client ID: <input name="MQCID" maxlength="40"><br>
 Device Topic: <input name="MD" maxlength="32"><br>
 Group Topic: <input name="MG" maxlength="32"><br>
 Publish on button press: <input type="checkbox" name="BM"><br>
-<i>Reboot required to apply changes. </i><a href="https://github.com/Aircoookie/WLED/wiki/MQTT" target="_blank">MQTT info</a>
+<i>应用更改需要重新启动 </i><a href="https://github.com/Aircoookie/WLED/wiki/MQTT" target="_blank">MQTT 信息</a>
 <h3>Philips Hue</h3>
-<i>You can find the bridge IP and the light number in the 'About' section of the hue app.</i><br>
-Poll Hue light <input name="HL" type="number" min="1" max="99" > every <input name="HI" type="number" min="100" max="65000"> ms: <input type="checkbox" name="HP"><br>
-Then, receive <input type="checkbox" name="HO"> On/Off, <input type="checkbox" name="HB"> Brightness, and <input type="checkbox" name="HC"> Color<br>
+<i>您可以在 Hue 应用的“关于”部分找到网桥 IP 和灯号。</i><br>
+轮询色相灯 <input name="HL" type="number" min="1" max="99" > 每 <input name="HI" type="number" min="100" max="65000"> ms: <input type="checkbox" name="HP"><br>
+然后,接收 <input type="checkbox" name="HO"> On/Off, <input type="checkbox" name="HB"> 亮度, <input type="checkbox" name="HC"> Color<br>
 Hue Bridge IP:<br>
 <input name="H0" type="number" min="0" max="255" > .
 <input name="H1" type="number" min="0" max="255" > .
 <input name="H2" type="number" min="0" max="255" > .
 <input name="H3" type="number" min="0" max="255" ><br>
-<b>Press the pushlink button on the bridge, after that save this page!</b><br>
-(when first connecting)<br>
-Hue status: <span class="sip"> Disabled in this build </span><hr>
-<button type="button" onclick="B()">Back</button><button type="submit">Save</button>
+<b>按下网桥上的pushlink按钮，然后保存此页面!</b><br>
+(第一次连接时)<br>
+Hue status: <span class="sip"> 在此版本中禁用 </span><hr>
+<button type="button" onclick="B()"></button>返回</button><button type="submit">保存</button>
 </form>
 </body>
 </html>

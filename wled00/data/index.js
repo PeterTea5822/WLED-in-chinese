@@ -204,7 +204,7 @@ function onLoad() {
 	locip = localStorage.getItem('locIp');
 	if (!locip)
 	{
-		locip = prompt("File Mode. Please enter WLED IP!");
+		locip = prompt("文件模式 请输入 WLED IP！");
 		localStorage.setItem('locIp', locip);
 	}
 	}
@@ -227,7 +227,7 @@ function onLoad() {
 			//TODO: do some parsing first
 		})
 		.catch(function (error) {
-			console.log("holidays.json does not contain array of holidays. Defaults loaded.");
+			console.log("Holiday.json 不包含假期数组 已加载默认值");
 		})
     .finally(function(){
       loadBg(cfg.theme.bg.url);
@@ -291,7 +291,7 @@ function showToast(text, error = false) {
 }
 
 function showErrorToast() {
-	showToast('Connection to light failed!', true);
+	showToast('无法连接到灯!', true);
 }
 function clearErrorToast() {
 	d.getElementById("toast").className = d.getElementById("toast").className.replace("error", "");
@@ -368,7 +368,7 @@ function cpBck() {
   copyText.setSelectionRange(0, 999999);
   d.execCommand("copy");
 	
-	showToast("Copied to clipboard!");
+	showToast("已复制到剪贴板!");
 }
 
 function presetError(empty)
@@ -382,19 +382,19 @@ function presetError(empty)
 	}
 	var cn = `<div class="seg c">`;
 	if (empty)
-		cn += `You have no presets yet!`;
+		cn += `你还没有预设!`;
 	else
-		cn += `Sorry, there was an issue loading your presets!`;
+		cn += `很抱歉,加载您的预设时出现问题`;
 
 	if (hasBackup) {
 		cn += `<br><br>`;
 		if (empty)
-			cn += `However, there is backup preset data of a previous installation available.<br>
-			(Saving a preset will hide this and overwrite the backup)`;
+			cn += `但是,有先前安装的备份预设数据可用<br>
+			(保存预设后将被隐藏并覆盖备份)`;
 		else
-			cn += `Here is a backup of the last known good state:`;
+			cn += `这是上次已知状态良好的备份:`;
 		cn += `<textarea id="bck"></textarea><br>
-			<button class="btn btn-p" onclick="cpBck()">Copy to clipboard</button>`;
+			<button class="btn btn-p" onclick="cpBck()">复制到剪贴板</button>`;
 	}
 	cn += `</div>`;
 	d.getElementById('pcont').innerHTML = cn;
@@ -452,7 +452,7 @@ function populateQL()
 {
 	var cn = "";
 	if (pQL.length > 0) {
-	cn += `<p class="labels">Quick load</p>`;
+	cn += `<p class="labels">快速加载</p>`;
 
   var it = 0;
 	for (var key of (pQL||[]))
@@ -466,7 +466,7 @@ function populateQL()
   }
   if (it != 0) cn+= '<br>';
 
-	cn += `<p class="labels">All presets</p>`;
+	cn += `<p class="labels">所有预设</p>`;
 	}
 	d.getElementById('pql').innerHTML = cn;
 }
@@ -544,15 +544,15 @@ function populateInfo(i)
 
 	cn += `v${i.ver} "${vcn}"<br><br><table class="infot">
 	${urows}
-	${inforow("Build",i.vid)}
-	${inforow("Signal strength",i.wifi.signal +"% ("+ i.wifi.rssi, " dBm)")}
-	${inforow("Uptime",getRuntimeStr(i.uptime))}
-	${inforow("Free heap",heap," kB")}
-  	${inforow("Estimated current",pwru)}
-  	${inforow("Frames / second",i.leds.fps)}
-	${inforow("MAC address",i.mac)}
-	${inforow("Filesystem",i.fs.u + "/" + i.fs.t + " kB (" +Math.round(i.fs.u*100/i.fs.t) + "%)")}
-	${inforow("Environment",i.arch + " " + i.core + " (" + i.lwip + ")")}
+	${inforow("构建",i.vid)}
+	${inforow("信号强度",i.wifi.signal +"% ("+ i.wifi.rssi, " dBm)")}
+	${inforow("运行时间",getRuntimeStr(i.uptime))}
+	${inforow("空闲内存",heap," kB")}
+  	${inforow("预计电流",pwru)}
+  	${inforow("框架 / second",i.leds.fps)}
+	${inforow("MAC地址",i.mac)}
+	${inforow("文件系统",i.fs.u + "/" + i.fs.t + " kB (" +Math.round(i.fs.u*100/i.fs.t) + "%)")}
+	${inforow("环境",i.arch + " " + i.core + " (" + i.lwip + ")")}
 	</table>`;
 	d.getElementById('kv').innerHTML = cn;
 }
@@ -817,11 +817,11 @@ function populateNodes(i,n)
 			}
 		}
 	}
-  if (i.ndc < 0) cn += `Instance List is disabled.`;
-  else if (nnodes == 0) cn += `No other instances found.`;
+  if (i.ndc < 0) cn += `实例列表被禁用`;
+  else if (nnodes == 0) cn += `没有发现其他实例`;
 	cn += `<table class="infot">
     ${urows}
-    ${inforow("Current instance:",i.name)}
+    ${inforow("当前实例:",i.name)}
   </table>`;
 	d.getElementById('kn').innerHTML = cn;
 }
@@ -839,7 +839,7 @@ function loadNodes()
 	})
 	.then(res => {
 		if (!res.ok) {
-			showToast('Could not load Node list!', true);
+			showToast('无法加载节点列表!', true);
 		}
 		return res.json();
 	})
@@ -1007,7 +1007,7 @@ function readState(s,command=false) {
   }
   var i=s.seg[selc];
   if (!i) {
-    showToast('No Segments!', true);
+    showToast('没有细分!', true);
     updateUI();
     return;
   }
@@ -1057,16 +1057,16 @@ function readState(s,command=false) {
     var errstr = "";
     switch (s.error) {
       case 10:
-        errstr = "Could not mount filesystem!";
+        errstr = "无法挂载文件系统!";
         break;
       case 11:
-        errstr = "Not enough space to save preset!";
+        errstr = "没有足够的空间来保存预设!";
         break;
       case 12:
-        errstr = "Preset not found.";
+        errstr = "未找到预设";
         break;
       case 19:
-        errstr = "A filesystem error has occured.";
+        errstr = "发生文件系统错误";
         break;
       }
     showToast('Error ' + s.error + ": " + errstr, true);
@@ -1130,7 +1130,7 @@ function requestJson(command, rinfo = true) {
 		clearErrorToast();
 		d.getElementById('connind').style.backgroundColor = "#070";
 		if (!json) {
-			showToast('Empty response', true);
+			showToast('响应为空', true);
 		}
 		if (json.success) {
 			return;
@@ -1202,9 +1202,9 @@ function toggleNl() {
 	nlA = !nlA;
 	if (nlA)
 	{
-		showToast(`Timer active. Your light will turn ${nlTar > 0 ? "on":"off"} ${nlMode ? "over":"after"} ${nlDur} minutes.`);
+		showToast(`定时器已激活 你的灯将会 ${nlTar > 0 ? "打开":"关闭"} ${nlMode ? "直到":"在之后的"} ${nlDur} 分钟`);
 	} else {
-		showToast('Timer deactivated.');
+		showToast('定时器已停用');
 	}
 	var obj = {"nl": {"on": nlA}};
 	requestJson(obj);
@@ -1214,9 +1214,9 @@ function toggleSync() {
 	syncSend = !syncSend;
 	if (syncSend)
 	{
-		showToast('Other lights in the network will now sync to this one.');
+		showToast('局域网中的其他灯将会与这个灯同步');
 	} else {
-		showToast('This light and other lights in the network will no longer sync.');
+		showToast('此灯和局域网中的其他灯将不再同步 ');
 	}
 	var obj = {"udpn": {"send": syncSend}};
 	if (syncTglRecv) obj.udpn.recv = syncSend;
@@ -1296,7 +1296,7 @@ var plSelContent = "";
 function makePlSel(arr) {
 	plSelContent = "";
 	for (var i = 0; i < arr.length; i++) {
-		var n = arr[i][1].n ? arr[i][1].n : "Preset " + arr[i][0];
+		var n = arr[i][1].n ? arr[i][1].n : "预设 " + arr[i][0];
 		if (arr[i][1].playlist && arr[i][1].playlist.ps) continue; //remove playlists, sub-playlists not yet supported
 		plSelContent += `<option value=${arr[i][0]}>${n}</option>`
 	}
@@ -1371,29 +1371,29 @@ function makeP(i,pl) {
   if (pl) {
 		var rep = plJson[i].repeat ? plJson[i].repeat : 0;
 		content = `
-  <div class="first c">Playlist Entries</div>
+  <div class="first c">播放列表条目</div>
   <div id="ple${i}"></div><label class="check revchkl">
     Shuffle
     <input type="checkbox" id="pl${i}rtgl" onchange="plR(${i})" ${plJson[i].r?"checked":""}>
     <span class="checkmark schk"></span>
   </label>
   <label class="check revchkl">
-    Repeat indefinitely
+    无限制的重复
     <input type="checkbox" id="pl${i}rptgl" onchange="plR(${i})" ${rep?"":"checked"}>
     <span class="checkmark schk"></span>
   </label>
 	<div id="pl${i}o1" style="display:${rep?"block":"none"}">
-  <div class="c">Repeat <input class="noslide" type="number" id="pl${i}rp" oninput="plR(${i})" max=127 min=0 value=${rep>0?rep:1}> times</div>
+  <div class="c">重复 <input class="noslide" type="number" id="pl${i}rp" oninput="plR(${i})" max=127 min=0 value=${rep>0?rep:1}> 次</div>
   End preset:<br>
   <select class="btn sel sel-ple" id="pl${i}selEnd" onchange="plR(${i})" data-val=${plJson[i].end?plJson[i].end:0}>
-		<option value=0>None</option>
+		<option value=0>无</option>
     ${plSelContent}
   </select>
 	</div>
   <button class="btn btn-i btn-p" onclick="testPl(${i}, this)"><i class='icons btn-icon'>&#xe139;</i>Test</button>`;
 	}
   else content = `<label class="check revchkl">
-		Include brightness
+		包含亮度
 		<input type="checkbox" id="p${i}ibtgl" checked>
 		<span class="checkmark schk"></span>
 	</label>
@@ -1406,10 +1406,10 @@ function makeP(i,pl) {
 	return `
 	<input type="text" class="ptxt noslide" id="p${i}txt" autocomplete="off" maxlength=32 value="${(i>0)?pName(i):""}" placeholder="Enter name..."/><br>
 	<div class="c">Quick load label: <input type="text" class="stxt noslide" maxlength=2 value="${qlName(i)}" id="p${i}ql" autocomplete="off"/></div>
-	<div class="h">(leave empty for no Quick load button)</div>
+	<div class="h">(留空表示没有快速加载按钮)</div>
 	<div ${pl&&i==0?"style='display:none'":""}>
 	<label class="check revchkl">
-    ${pl?"Show playlist editor":(i>0)?"Overwrite with state":"Use current state"}
+    ${pl?"显示播放列表编辑器":(i>0)?"用状态覆盖":"使用当前状态"}
     <input type="checkbox" id="p${i}cstgl" onchange="tglCs(${i})" ${(i==0||pl)?"checked":""}>
     <span class="checkmark schk"></span>
   </label><br>
@@ -1436,7 +1436,7 @@ function makeP(i,pl) {
 function makePUtil() {
 	d.getElementById('putil').innerHTML = `<div class="seg pres">
 		<div class="segname newseg">
-			New preset</div>
+			新的预设</div>
 		<div class="segin expanded">
 		${makeP(0)}</div></div>`;
 }
@@ -1448,7 +1448,7 @@ function makePlEntry(p,i) {
 			${plSelContent}
     </select>
 		<button class="btn btn-i btn-xs btn-pl-del" onclick="delPl(${p},${i})"><i class="icons btn-icon">&#xe037;</i></button>
-		<div class="h plnl">Duration</div><div class="h plnl">Transition</div><div class="h pli">#${i+1}</div><br>
+		<div class="h plnl">Duration</div><div class="h plnl">过渡</div><div class="h pli">#${i+1}</div><br>
 		<input class="noslide pln" type="number" max=6553.0 min=0.2 step=0.1 oninput="pleDur(${p},${i},this)" value=${plJson[p].dur[i]/10.0}>
 		<input class="noslide pln" type="number" max=65.0 min=0.0 step=0.1 oninput="pleTr(${p},${i},this)" value=${plJson[p].transition[i]/10.0}> s
 		<button class="btn btn-i btn-xs btn-pl-add" onclick="addPl(${p},${i})"><i class="icons btn-icon">&#xe18a;</i></button>
@@ -1458,12 +1458,12 @@ function makePlEntry(p,i) {
 
 function makePlUtil() {
   if (pNum < 2) {
-    showToast("You need at least 2 presets to make a playlist!"); return;
+    showToast("至少需要 2 个预设才能制作播放列表!"); return;
   }
 	if (plJson[0].transition[0] < 0) plJson[0].transition[0] = tr;
   d.getElementById('putil').innerHTML = `<div class="seg pres">
   <div class="segname newseg">
-    New playlist</div>
+    新播放列表</div>
   <div class="segin expanded" id="seg100">
   ${makeP(0,true)}</div></div>`;
 	
@@ -1516,7 +1516,7 @@ function setSeg(s){
 
 function delSeg(s){
 	if (segCount < 2) {
-		showToast("You need to have multiple segments to delete one!");
+		showToast("需要有多个segments才能删除一个!");
 		return;
 	}
 	expanded[s] = false;
@@ -1622,13 +1622,13 @@ function saveP(i,pl) {
 		} catch (e) {
 			obj.win = raw;
 			if (raw.length < 2) {
-				d.getElementById(`p${i}warn`).innerHTML = "&#9888; Please enter your API command first";
+				d.getElementById(`p${i}warn`).innerHTML = "&#9888; 请先输入你的 API 命令 ";
 				return;
 			} else if (raw.indexOf('{') > -1) {
-				d.getElementById(`p${i}warn`).innerHTML = "&#9888; Syntax error in custom JSON API command";
+				d.getElementById(`p${i}warn`).innerHTML = "&#9888; 自定义 JSON API 命令中的语法错误";
 				return;
 			} else if (raw.indexOf("Please") == 0) {
-				d.getElementById(`p${i}warn`).innerHTML = "&#9888; Please refresh the page before modifying this preset";
+				d.getElementById(`p${i}warn`).innerHTML = "&#9888; 修改此预设前请刷新页面";
 				return;
 			}
 		}
@@ -1656,7 +1656,7 @@ function saveP(i,pl) {
     delete pJson[pI].v;
     delete pJson[pI].time;
 	} else {
-		pJson[pI] = {"n":pN, "win":"Please refresh the page to see this newly saved command."};
+		pJson[pI] = {"n":pN, "win":"请刷新页面以查看这个新保存的命令"};
 		if (obj.win) pJson[pI].win = obj.win;
 		if (obj.ql)  pJson[pI].ql = obj.ql;
 	}
@@ -1691,7 +1691,7 @@ function delP(i) {
 		populatePresets();
 	} else {
 		bt.style.color = "#f00";
-		bt.innerHTML = "<i class='icons btn-icon'>&#xe037;</i>Confirm delete";
+		bt.innerHTML = "<i class='icons btn-icon'>&#xe037;</i>确认删除";
 		bt.dataset.cnf = 1;
 	}
 }
@@ -1812,7 +1812,7 @@ function cnfReset()
 	{
 		var bt = d.getElementById('resetbtn');
 	bt.style.color = "#f00";
-	bt.innerHTML = "Confirm Reboot";
+	bt.innerHTML = "确认重启";
 	cnfr = true; return;
 	}
 	window.location.href = "/reset";
@@ -1825,12 +1825,12 @@ function rSegs()
 	if (!cnfrS)
 	{
 	bt.style.color = "#f00";
-	bt.innerHTML = "Confirm reset";
+	bt.innerHTML = "确认重置";
 	cnfrS = true; return;
 	}
 	cnfrS = false;
 	bt.style.color = "#fff";
-	bt.innerHTML = "Reset segments";
+	bt.innerHTML = "重置segments";
 	var obj = {"seg":[{"start":0,"stop":ledCount,"sel":true}]};
 	for (let i=1; i<=lSeg; i++){
 		obj.seg.push({"stop":0});

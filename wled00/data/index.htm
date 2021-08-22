@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 	<meta charset="utf-8">
@@ -12,24 +12,24 @@
 </head>
 <body onload="onLoad()">
 
-<div id="cv" class="overlay">Loading WLED UI...</div>
-<noscript><div class="overlay" style="opacity:1;">Sorry, WLED UI needs JavaScript!</div></noscript>
+<div id="cv" class="overlay">加载 WLED 用户界面...</div>
+<noscript><div class="overlay" style="opacity:1;">很抱歉,WLED UI 需要 JavaScript 支持!</div></noscript>
 <div id="bg"></div>
 
 <div class="wrapper" id="top">
 	<div class="tab top">
 		<div class="btnwrap">
-			<button id="buttonPower" onclick="togglePower()" class="tgl"><i class="icons">&#xe08f;</i><p class="tab-label">Power</p></button>
-			<button id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i><p class="tab-label">Timer</p></button>
-			<button id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i><p class="tab-label">Sync</p></button>
-			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">Peek</p></button>
-		  <button id="buttonI" onclick="toggleInfo()"><i class="icons">&#xe066;</i><p class="tab-label">Info</p></button>
+			<button id="buttonPower" onclick="togglePower()" class="tgl"><i class="icons">&#xe08f;</i><p class="tab-label">电源</p></button>
+			<button id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i><p class="tab-label">计时器</p></button>
+			<button id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i><p class="tab-label">同步</p></button>
+			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">预览</p></button>
+		  <button id="buttonI" onclick="toggleInfo()"><i class="icons">&#xe066;</i><p class="tab-label">信息</p></button>
       <button id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i><p class="tab-label">Nodes</p></button></div>
-			<button onclick="window.location.href = '/settings';"><i class="icons">&#xe0a2;</i><p class="tab-label">Config</p></button>
+			<button onclick="window.location.href = '/settings';"><i class="icons">&#xe0a2;</i><p class="tab-label">配置</p></button>
 		  <button id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe23d;</i><p class="tab-label">PC Mode</p></button>
 		</div>
 		<div id="briwrap">
-			<p class="hd">Brightness</p>
+			<p class="hd">亮度</p>
 			<div class="il">
 				<i class="icons slider-icon" onclick="tglTheme()">&#xe2a6;</i>
 				<div class="sliderwrap il">
@@ -60,7 +60,7 @@
 			</div><br>
 		</div>
 		<div id="wwrap">
-			<p class="labels">White channel</p>
+			<p class="labels">白色通道</p>
 			<div class="sliderwrap il">
 				<input id="sliderW" class="noslide" onchange="setColor(0)" oninput="updateTrail(this)" max="255" min="0" type="range" value="128" />
 				<div class="sliderdisplay"></div>
@@ -90,7 +90,7 @@
 		</div>
 		<p class="labels">
 			<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i>
-			Color palette
+			调色盘
 		</p>
 		<div class="il">
 			<div id="pallist" class="list">
@@ -102,7 +102,7 @@
 					</label>
 					<div class="lstIcontent">
 						<span class="lstIname">
-							Default
+							默认
 						</span>
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 	</div>
 
 	<div id="Effects" class="tabcontent">
-		<p class="labels">Effect speed</p>
+		<p class="labels">效果速度</p>
 		<div class="staytop">
 			<i class="icons slider-icon">&#xe325;</i>
 			<div class="sliderwrap il">
@@ -128,7 +128,7 @@
 				<div class="sliderdisplay"></div>
 			</div>
 		</div>
-		<p class="labels">Effect intensity</p>
+		<p class="labels">效果强度</p>
 		<div class="staytop" id="staytop1">
 			<i class="icons slider-icon" onclick="tglLabels()">&#xe409;</i>
 			<div class="sliderwrap il">
@@ -137,7 +137,7 @@
 				<div class="sliderdisplay"></div>
 			</div>
 		</div>
-		<p class="labels">Effect mode</p>
+		<p class="labels">效果模式</p>
 		<div id="fxlist" class="list">
 			Loading...
 		</div>
@@ -151,9 +151,9 @@
 
 		</div>
 		<div id="segutil2">
-			<button class="btn btn-s" id="rsbtn" onclick="rSegs()">Reset segments</button>
+			<button class="btn btn-s" id="rsbtn" onclick="rSegs()">重置segments</button>
 		</div>
-    <p>Transition: <input id="tt" class="noslide" type="number" min="0" max="65.5" step="0.1" value="0.7">s</p>
+    <p>过渡: <input id="tt" class="noslide" type="number" min="0" max="65.5" step="0.1" value="0.7">s</p>
 	</div>
 
 	<div id="Presets" class="tabcontent">
@@ -170,10 +170,10 @@
 </div>
 
 <div class="tab bot" id="bot">
-	<button class="tablinks" onclick="openTab(0)"><i class="icons">&#xe2b3;</i><p class="tab-label">Colors</p></button>
-	<button class="tablinks" onclick="openTab(1)"><i class="icons">&#xe23d;</i><p class="tab-label">Effects</p></button>
+	<button class="tablinks" onclick="openTab(0)"><i class="icons">&#xe2b3;</i><p class="tab-label">颜色</p></button>
+	<button class="tablinks" onclick="openTab(1)"><i class="icons">&#xe23d;</i><p class="tab-label">效果</p></button>
 	<button class="tablinks" onclick="openTab(2)"><i class="icons">&#xe34b;</i><p class="tab-label">Segments</p></button>
-	<button class="tablinks" onclick="openTab(3)"><i class="icons">&#xe04c;</i><p class="tab-label">Presets</p></button>
+	<button class="tablinks" onclick="openTab(3)"><i class="icons">&#xe04c;</i><p class="tab-label">预设</p></button>
 </div>
 
 <div id="connind"></div>
@@ -184,28 +184,28 @@
 		<img class="wi" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAFCAYAAAC5Fuf5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABbSURBVChTlY9bDoAwDMNW7n9nwCipytQN4Z8tbrTHmDmF4oPzyldwRqp1SSdnV/NuZuzqerAByxXznBw3igkeFEfXyUuhK/yFM0CxJfyqXZEOc6/Sr9/bf7uIC5Nwd7orMvAPAAAAAElFTkSuQmCC" />
 	</div><br>
 <div id="kv">Loading...</div><br>
-<button class="btn infobtn" onclick="requestJson(null)">Refresh</button>
-<button class="btn infobtn" onclick="toggleInfo()">Close Info</button><br>
-<button class="btn infobtn" onclick="toggleNodes()">Instance List</button>
-<button class="btn infobtn" id="resetbtn" onclick="cnfReset()">Reboot WLED</button><br>
-<span class="h">Made with <span id="heart">&#10084;&#xFE0E;</span> by Aircoookie and the WLED community</span>
+<button class="btn infobtn" onclick="requestJson(null)">刷新</button>
+<button class="btn infobtn" onclick="toggleInfo()">关闭信息页面</button><br>
+<button class="btn infobtn" onclick="toggleNodes()">实例列表</button>
+<button class="btn infobtn" id="resetbtn" onclick="cnfReset()">重启 WLED</button><br>
+<span class="h">Made with <span id="heart">&#10084;&#xFE0E;</span> by Aircoookie 和 WLED 社区</span>
 </div>
 
 <div id="nodes" class="modal">
-  <div id="ndlt">WLED instances</div>
+  <div id="ndlt">WLED 实例</div>
   <div id="kn">Loading...</div><br>
-  <button class="btn infobtn" onclick="loadNodes()">Refresh</button>
-  <button class="btn infobtn" onclick="toggleNodes()">Close list</button><br>
+  <button class="btn infobtn" onclick="loadNodes()">刷新</button>
+  <button class="btn infobtn" onclick="toggleNodes()">关闭列表</button><br>
 </div>
 
 <div id="rover" class="modal">
 	<i class="icons huge">&#xe410;</i><br>
 	<div id="lv">?</div><br><br>
-	To use built-in effects, use an override button below.<br>
-	You can return to realtime mode by pressing the star in the top left corner.<br>
-	<button class="btn" onclick="setLor(1)">Override once</button>
-	<button class="btn" onclick="setLor(2)">Override until reboot</button><br>
-	<span class="h">For best performance, it is recommended to turn off the streaming source when not in use.</span>
+	要使用内置效果,请使用下面的覆盖按钮<br>
+	您可以通过按左上角的星号返回实时模式<br>
+	<button class="btn" onclick="setLor(1)">覆盖一次</button>
+	<button class="btn" onclick="setLor(2)">覆盖直到重启</button><br>
+	<span class="h">为获得最佳性能,建议在不使用时关闭流媒体源</span>
 </div>
 
 <i id="roverstar" class="icons huge" onclick="setLor(0)">&#xe410;</i><br>
