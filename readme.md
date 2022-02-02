@@ -9,6 +9,9 @@
   <a href="https://gitpod.io/#https://github.com/Aircoookie/WLED"><img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?style=flat-square&logo=gitpod"></a>
 
   </p>
+#WLED 汉化版
+
+
 
 # Welcome to my project WLED! ✨
 
